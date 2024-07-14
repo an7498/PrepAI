@@ -32,10 +32,16 @@ function Feedback({ params }) {
       console.log(result);
       setFeedbackList(result);
 
-      // Calculate the average rating
-      const totalRating = result.reduce((acc, item) => acc + item.rating, 0);
-      const avgRating = totalRating / result.length;
-      setAverageRating(avgRating.toFixed(1)); // To keep one decimal place
+      if (result.length > 0) {
+        const totalRating = result.reduce(
+          (acc, item) => acc + Number(item.rating),
+          0
+        );
+        const avgRating = totalRating / result.length;
+        setAverageRating(avgRating.toFixed(1));
+      } else {
+        setAverageRating(0);
+      }
     } catch (error) {
       console.error("Failed to fetch feedback:", error);
     }
