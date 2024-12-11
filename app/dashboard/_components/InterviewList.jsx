@@ -1,6 +1,6 @@
 "use client";
 import { db } from "@/utils/db";
-import { MockInterview } from "@/utils/schema";
+import { mockInterview, MockInterview } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import { desc, eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
@@ -17,11 +17,11 @@ function InterviewList() {
   const GetInterviewList = async () => {
     const result = await db
       .select()
-      .from(MockInterview)
+      .from(mockInterview)
       .where(
-        eq(MockInterview.createdBy, user?.primaryEmailAddress?.emailAddress)
+        eq(mockInterview.createdBy, user?.primaryEmailAddress?.emailAddress)
       )
-      .orderBy(desc(MockInterview.id));
+      .orderBy(desc(mockInterview.id));
 
     console.log(result);
     setInterviewList(result);

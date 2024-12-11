@@ -4,6 +4,11 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
+
+
+
+
+
 function Header() {
   const path = usePathname();
   useEffect(() => {
@@ -32,7 +37,7 @@ function Header() {
             path == "/dashboard/upgrade" && "text-primary font-bold"
           }`}
         >
-          Upgrade
+         Upgrade
         </li>
         <li
           className={`hover:text-primary hover:font-bold transition-all cursor-pointer ${
@@ -43,6 +48,7 @@ function Header() {
         </li>
       </ul>
       <UserButton />
+      
     </div>
   );
 }

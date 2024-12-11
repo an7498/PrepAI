@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { chatSession } from "@/utils/GeminiAIModel";
 import { LoaderCircle } from "lucide-react";
-import { MockInterview } from "@/utils/schema";
+import { mockInterview, MockInterview } from "@/utils/schema";
 import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment";
@@ -55,7 +55,7 @@ function AddNewInterview() {
 
     if (MockJsonResp) {
       const resp = await db
-        .insert(MockInterview)
+        .insert(mockInterview)
         .values({
           mockId: uuidv4(),
           jsonMockResp: MockJsonResp,
@@ -65,7 +65,7 @@ function AddNewInterview() {
           createdBy: user?.primaryEmailAddress?.emailAddress,
           createdAt: moment().format("DD-MM-YYYY"),
         })
-        .returning({ mockId: MockInterview.mockId });
+        .returning({ mockId: mockInterview.mockId });
 
       console.log("Inserted ID:", resp);
       if (resp) {

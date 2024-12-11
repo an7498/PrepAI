@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { db } from "@/utils/db";
-import { MockInterview } from "@/utils/schema";
+import { mockInterview, MockInterview } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import { Lightbulb, WebcamIcon } from "lucide-react";
 import Link from "next/link";
@@ -21,8 +21,8 @@ function Interview({ params }) {
   const GetInterviewDetails = async () => {
     const result = await db
       .select()
-      .from(MockInterview)
-      .where(eq(MockInterview.mockId, params.interviewId));
+      .from(mockInterview)
+      .where(eq(mockInterview.mockId, params.interviewId));
 
     setInterviewData(result[0]);
   };
